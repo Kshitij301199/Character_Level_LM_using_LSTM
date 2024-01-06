@@ -1,3 +1,29 @@
+"""
+This script provides functions for training an LSTM decoder model, generating text sequences,
+and evaluating the model's performance with different hyperparameters. It also includes a utility
+function to plot loss curves for multiple learning rates.
+
+Functions:
+- `generate(decoder, prime_str='A', predict_len=100, temperature=0.8) -> str`: 
+  Generate a sequence of characters using a trained decoder.
+  
+- `train(decoder, decoder_optimizer, inp, target) -> float`:
+  Train the decoder model for a single step using the given input and target sequences.
+  
+- `tuner(n_epochs=3000, print_every=100, plot_every=10, hidden_size=128, n_layers=2, lr=0.005, opt="Adam") -> (object, list)`:
+  Train the decoder model with specified hyperparameters and return the trained model along with a list of average losses during training.
+
+- `plot_loss(no_of_epochs=1000, plot_every=10, lr_list=None) -> None`:
+  Plot multiple learning rate options and their corresponding loss curves.
+
+- `diff_temp(temp_list) -> None`:
+  Generate and compare text predictions using different temperature values.
+
+- `custom_train(hyperparam_list) -> tuple`:
+  Train the model with different sets of hyperparameters and return lists of BPC (bits per character) scores and final losses.
+
+Note: This script assumes the existence of external modules such as `utils` and `evaluation` for various utility functions.
+"""
 import os
 import random
 import time
@@ -13,7 +39,22 @@ from evaluation import compute_bpc
 from model.model import LSTM
 
 
-def generate(decoder, prime_str='A', predict_len=100, temperature=0.8):
+def generate(decoder, prime_str : str ='A',
+             predict_len : int = 100, temperature: float = 0.8) -> str:
+    """
+    Generate a sequence of characters using a trained decoder.
+
+    Args:
+        decoder (RNN): The trained decoder model.
+        prime_str (str): The priming string to initialize the generation. Default is 'A'.
+        predict_len (int): The length of the generated sequence. Default is 100.
+        temperature (float): Controls the level of randomness in the generated sequence.
+            Higher values (e.g., 1.0) make the output more random, while lower values
+            (e.g., 0.1) make it more deterministic. Default is 0.8.
+
+    Returns:
+        str: The generated sequence of characters.
+    """
     hidden, cell = decoder.init_hidden()
     prime_input = char_tensor(prime_str)
     predicted = prime_str
@@ -40,6 +81,18 @@ def generate(decoder, prime_str='A', predict_len=100, temperature=0.8):
 
 def train(decoder : object, decoder_optimizer : object,
           inp : torch.TensorType, target : torch.TensorType) -> float:
+    """
+    Train the decoder model for a single step using the given input and target sequences.
+
+    Args:
+        decoder (object): The decoder model to be trained.
+        decoder_optimizer (object): The optimizer for updating the decoder's parameters.
+        inp (torch.TensorType): The input sequence tensor.
+        target (torch.TensorType): The target sequence tensor.
+
+    Returns:
+        float: The normalized loss for the current training step, averaged over the sequence length.
+    """
     hidden, cell = decoder.init_hidden()
     decoder.zero_grad()
     loss = 0
@@ -54,15 +107,25 @@ def train(decoder : object, decoder_optimizer : object,
 
     return loss.item() / CHUNK_LEN
 
-def tuner(n_epochs : int = 3000,
-          print_every : int = 100,
-          plot_every  : int = 10,
-          hidden_size : int = 128,
-          n_layers : int = 2,
-          lr :float = 0.005,
-          opt : str = "Adam") -> (object,list) :
-    
-    # import string
+def tuner(n_epochs : int = 3000, print_every : int = 100,
+          plot_every  : int = 10, hidden_size : int = 128,
+          n_layers : int = 2, lr :float = 0.005, opt : str = "Adam") -> (object,list) :
+    """
+    Args:
+        n_epochs (int): Number of training epochs. Default is 3000.
+        print_every (int): Frequency of printing training information. Default is 100.
+        plot_every (int): Frequency of recording average losses for plotting. Default is 10.
+        hidden_size (int): Size of the hidden layer in the LSTM. Default is 128.
+        n_layers (int): Number of layers in the LSTM. Default is 2.
+        lr (float): Learning rate for the optimizer. Default is 0.005.
+        opt (str): String specifying the optimizer ('Adam', 'AdamW', or 'RMSprop'). Default is 'Adam'.
+
+    Returns:
+        tuple: A tuple containing the trained decoder model and a list of average losses during training.
+
+    Example:
+        decoder, losses = tuner(n_epochs=5000, hidden_size=256, lr=0.01)
+    """
     
     all_characters = string.printable
     n_characters = len(all_characters)
@@ -95,20 +158,38 @@ def tuner(n_epochs : int = 3000,
     print(" -------------------------- STARTING TRAINING -------------------------- ")
     
     for epoch in range(1, n_epochs+1):
-            loss = train(decoder, optimizer, *random_training_set())
-            loss_avg += loss
+        loss = train(decoder, optimizer, *random_training_set())
+        loss_avg += loss
 
-            if epoch % print_every == 0:
-                print(f'[{time_since(start)} ({epoch} {np.round(epoch/n_epochs * 100,2)}%) {np.round(loss,4)}]')
-                #print(generate(decoder, start_string , prediction_length), '\n')
+        if epoch % print_every == 0:
+            print(f'[{time_since(start)} ({epoch} {np.round(epoch/n_epochs * 100,2)}%) {np.round(loss,4)}]')
+            #print(generate(decoder, start_string , prediction_length), '\n')
 
-            if epoch % plot_every == 0:
-                all_losses.append(loss_avg / plot_every)
-                loss_avg = 0
+        if epoch % plot_every == 0:
+            all_losses.append(loss_avg / plot_every)
+            loss_avg = 0
                 
     return decoder, all_losses
 
-def plot_loss(no_of_epochs:int = 1000, plot_every : int = 10, lr_list : list = [0.005]) -> None:
+def plot_loss(no_of_epochs:int = 1000, plot_every : int = 10, lr_list : list = None) -> None:
+    """
+    Plot multiple learning rate options and their corresponding loss curves.
+
+    Args:
+        lr_list (list): List of learning rates to be evaluated.
+        tuner (callable): Function or class responsible for training and returning loss values.
+        no_of_epochs (int): Total number of training epochs. Default is 2000.
+        plot_every (int): Plot the loss every `plot_every` epochs. Default is 5.
+
+    Returns:
+        None
+
+    This function generates a plot displaying the loss curves for different learning rates.
+    Each curve corresponds to a different learning rate specified in the `lr_list`.
+    The plot is saved as an image file ('plot_loss.png' or 'plot_loss_2.png' based on existence).
+    """
+    if lr_list is None:
+        lr_list = [0.5,0.05,0.005]
     plt.style.use('seaborn')
     plt.figure(figsize=(10,10))
     plt.xticks(fontweight='bold', size=12)
@@ -139,14 +220,24 @@ def plot_loss(no_of_epochs:int = 1000, plot_every : int = 10, lr_list : list = [
     print("Image Saved !")
 
 def diff_temp(temp_list):
-    # YOUR CODE HERE
-    #         1) Using `tuner()` function, try to generate strings by using different temperature
-    #         from `temp_list`.
-    #         2) In order to do this, create chunks from the test set (with 200 characters length)
-    #         and take first 10 characters of a randomly chosen chunk as a priming string.
-    #         3) What happen with the output when you increase or decrease the temperature?
-    ################################ STUDENT SOLUTION ################################
-    model, _ = tuner(n_epochs = 2000, opt = "RMSprop")
+    """
+    Generate and compare text predictions using different temperature values.
+
+    Args:
+        temp_list (list): A list of temperature values to experiment with during text generation.
+
+    Returns:
+        None
+
+    Generates text predictions using a trained model with varying temperatures and
+    compares the results to the original text. The predictions, original text, and
+    corresponding temperatures are saved to a file named "diff_temp.txt" for analysis.
+
+    Example:
+    >>> temp_list = [0.5, 0.8, 1.0]
+    >>> diff_temp(temp_list)
+    """
+    model, _ = tuner(n_epochs = 4000, print_every = 250, opt = "RMSprop")
     test_path = './data/dickens_test.txt'
     input_string = unidecode.unidecode(open(test_path, 'r').read())
     predict_len = 200
@@ -157,13 +248,15 @@ def diff_temp(temp_list):
             start_index = random.randint(0, len(input_string) - CHUNK_LEN - 1)
             end_index = start_index + CHUNK_LEN + 1
             chunk = input_string[start_index: end_index]
-            predicted_text = generate(model, prime_str=chunk[:10], predict_len=predict_len, temperature=temperature)    
+            predicted_text = generate(model, prime_str=chunk[:10], predict_len=predict_len, temperature=temperature)
             print(f"TEMPERATURE : {temperature}")
             file.write(f"TEMPERATURE : {temperature}\n")
             print(f"PREDICTION : {predicted_text}")
             file.write(f"PREDICTION : {predicted_text}\n")
             print(f"ORIGINAL TEXT : {chunk}")
-            print("---------------------------------------------------------------\n")
+            file.write(f"ORIGINAL TEXT : {chunk}\n\n")
+            print("---------------------------------------------------------------")
+            file.write("---------------------------------------------------------------")
     ##################################################################################
 
 def custom_train(hyperparam_list):

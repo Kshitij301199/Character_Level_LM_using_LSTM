@@ -1,3 +1,24 @@
+"""
+This module contains a function to compute the bits per character (BPC) for a given
+RNN-based model and a string of characters using cross-entropy loss.
+
+Functions:
+    - compute_bpc(model: object, string: str) -> float:
+        Given an RNN-based model and a string of characters, computes the bits per
+        character (BPC) using cross-entropy loss.
+
+Usage:
+    import math
+    import torch
+    from utils import char_tensor, CHUNK_LEN
+    from compute_bpc import compute_bpc
+
+    # Example usage with a trained model and input string
+    model = MyRNNModel()
+    input_string = "Hello, world!"
+    bpc_result = compute_bpc(model, input_string)
+    print(f"Bits per character for the given string: {bpc_result}")
+"""
 import math
 import torch
 
@@ -45,6 +66,6 @@ def compute_bpc(model : object, string : str) -> float:
         num_iters += 1
         if num_iters % 1500 == 0:
             print(f"Number of iterations run for BPC calc : {num_iters}")
-        print(f"Total number of iterations : {num_iters}")
+        print(f"Total number of iterations : {num_iters} BPC : {bpc}")
     return avg_bpc / num_iters
 

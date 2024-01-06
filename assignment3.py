@@ -1,9 +1,32 @@
+"""
+Train and evaluate an LSTM language model with various options.
+
+Options include:
+- `--default_train`: Train LSTM with default hyperparameters.
+- `--custom_train`: Train LSTM while tuning hyperparameters.
+- `--plot_loss`: Plot losses chart with different learning rates.
+- `--diff_temp`: Generate strings using different temperature values.
+
+This script serves as a tool for training, evaluating, and experimenting with LSTM language models.
+The main function, `main()`, acts as the entry point and parses command-line arguments to execute
+different tasks, such as default training, custom training with hyperparameter tuning, loss
+plotting, and string generation with different temperatures.
+
+Command-line Arguments:
+    --default_train: Train LSTM with default hyperparameters.
+    --custom_train: Train LSTM while tuning hyperparameters.
+    --plot_loss: Plot losses chart with different learning rates.
+    --diff_temp: Generate strings using different temperature values.
+
+Returns:
+    None
+"""
 import argparse
 import csv
-import torch
 import string
 import time
 import datetime
+import torch
 import numpy as np
 # import torch.nn as nn
 # import unidecode
@@ -14,6 +37,23 @@ from model.model import LSTM
 
 
 def main():
+    """
+    Main function for training and evaluating an LSTM model with various options.
+
+    Options include:
+    - `--default_train`: Train LSTM with default hyperparameters.
+    - `--custom_train`: Train LSTM while tuning hyperparameters.
+    - `--plot_loss`: Plot losses chart with different learning rates.
+    - `--diff_temp`: Generate strings using different temperature values.
+
+    Returns:
+        None
+
+    This function serves as the entry point for the script. It parses command-line arguments,
+    performs the specified tasks, and prints the results. The training and evaluation options
+    include default training, custom training with hyperparameter tuning, plotting loss curves,
+    and generating strings with different temperatures.
+    """
     parser = argparse.ArgumentParser(
         description='Train LSTM'
     )
