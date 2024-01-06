@@ -1,12 +1,12 @@
 import argparse
 import csv
 import torch
-import numpy as np
-# import torch.nn as nn
-# import unidecode
 import string
 import time
 import datetime
+import numpy as np
+# import torch.nn as nn
+# import unidecode
 
 from utils import random_training_set, time_since
 from language_model import plot_loss, diff_temp, custom_train, train, generate
@@ -114,21 +114,22 @@ def main():
             writer.writeheader()
         
             for hyperparams, bpc, loss in zip(hyperparam_list, bpc_list, loss_list):
-                print(f"Configuration {hyperparams}\n BPC = {bpc} \t Loss = {loss}")
-                writer.writerow(hyperparams | {"BPC" : np.round(bpc,5), "Loss" : np.round(loss)})
+                print(f"CONFIGURATION : {hyperparams}\n BPC = {bpc} \t LOSS = {loss}")
+                writer.writerow(hyperparams | {"BPC" : np.round(bpc,5), "Loss" : np.round(loss,4)})
             
             
     if args.plot_loss:
         print(f"Start Time : {datetime.datetime.now()}")
+        lr_list = [0.1,0.05,0.01,0.005,0.001,0.0005,0.0001]
         lr_list = [0.001,0.0025,0.005,0.0075,0.01]
         plot_loss(no_of_epochs = 2000,plot_every = 5,lr_list = lr_list)
 
     if args.diff_temp:
+        print(f"Start Time : {datetime.datetime.now}")
         # YOUR CODE HERE
-        #     TODO:
         #         1) Fill in `temp_list` with temperatures that you want to try.
         ########################### STUDENT SOLUTION ###########################
-        temp_list = []
+        temp_list = [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95]
         ########################################################################
         diff_temp(temp_list)
 

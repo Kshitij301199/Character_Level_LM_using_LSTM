@@ -1,8 +1,8 @@
 import os
+import random
 import time
 import string
 import torch
-import random
 import torch.nn as nn
 import numpy as np
 import unidecode
@@ -38,7 +38,6 @@ def generate(decoder, prime_str='A', predict_len=100, temperature=0.8):
 
     return predicted
 
-
 def train(decoder : object, decoder_optimizer : object,
           inp : torch.TensorType, target : torch.TensorType) -> float:
     hidden, cell = decoder.init_hidden()
@@ -55,16 +54,12 @@ def train(decoder : object, decoder_optimizer : object,
 
     return loss.item() / CHUNK_LEN
 
-
 def tuner(n_epochs : int = 3000,
           print_every : int = 100,
           plot_every  : int = 10,
           hidden_size : int = 128,
           n_layers : int = 2,
           lr :float = 0.005,
-          start_string : str = 'A',
-          prediction_length : int = 100,
-          temperature : float = 0.8,
           opt : str = "Adam") -> (object,list) :
     
     # import string
@@ -145,14 +140,30 @@ def plot_loss(no_of_epochs:int = 1000, plot_every : int = 10, lr_list : list = [
 
 def diff_temp(temp_list):
     # YOUR CODE HERE
-    #     TODO:
     #         1) Using `tuner()` function, try to generate strings by using different temperature
     #         from `temp_list`.
     #         2) In order to do this, create chunks from the test set (with 200 characters length)
     #         and take first 10 characters of a randomly chosen chunk as a priming string.
     #         3) What happen with the output when you increase or decrease the temperature?
     ################################ STUDENT SOLUTION ################################
-    pass
+    model, _ = tuner(n_epochs = 2000, opt = "RMSprop")
+    test_path = './data/dickens_test.txt'
+    input_string = unidecode.unidecode(open(test_path, 'r').read())
+    predict_len = 200
+    file_name = "./diff_temp.txt"
+    with open(file_name, 'w', newline='') as file:
+        for temperature in temp_list:
+            # random_chunk
+            start_index = random.randint(0, len(input_string) - CHUNK_LEN - 1)
+            end_index = start_index + CHUNK_LEN + 1
+            chunk = input_string[start_index: end_index]
+            predicted_text = generate(model, prime_str=chunk[:10], predict_len=predict_len, temperature=temperature)    
+            print(f"TEMPERATURE : {temperature}")
+            file.write(f"TEMPERATURE : {temperature}\n")
+            print(f"PREDICTION : {predicted_text}")
+            file.write(f"PREDICTION : {predicted_text}\n")
+            print(f"ORIGINAL TEXT : {chunk}")
+            print("---------------------------------------------------------------\n")
     ##################################################################################
 
 def custom_train(hyperparam_list):
