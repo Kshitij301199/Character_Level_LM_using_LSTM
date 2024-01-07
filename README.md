@@ -7,8 +7,6 @@ This repository contains code for building a Character-Level Language Model usin
 - [Dependencies](#dependencies)
 - [Repository Structure](#repository-structure)
 - [Usage](#usage)
-- [Training](#training)
-- [Evaluation](#evaluation)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -47,33 +45,28 @@ pip install -r requirements.txt
 
 3. Train the model:
    ```bash
-   python train.py --input_path data/training_text.txt --output_model_path models/lstm_model.pth
+   python assignment3.py --default_train 
    ```
 
-4. Generate sequences:
+4. Compare hyperparameters:
    ```bash
-   python generate.py --model_path models/lstm_model.pth --prime_str "Hello, " --predict_len 200
+   python assignment3.py --custom_train
    ```
 
-## Training
-To train the LSTM model on a custom text dataset, use the `train.py` script. Specify the path to your training text file using the `--input_path` argument.
+5. Plot loss for varying learning rates:
+    ```bash
+    python assignment3.py --plot_loss
+    ```
 
-```bash
-python train.py --input_path path/to/your/training_text.txt --output_model_path path/to/save/model.pth
-```
-
-## Evaluation
-Evaluation of the model can be done by generating sequences using the `generate.py` script. Specify the path to the trained model using the `--model_path` argument and provide optional parameters like `--prime_str` and `--predict_len`.
-
-```bash
-python generate.py --model_path path/to/your/model.pth --prime_str "Example starting text" --predict_len 300
-```
+6. Compare generated strings for different temperatures:
+    ```bash
+    python assignment3.py --diff_temp
+    ```
 
 ## Contributing
 Contributions are welcome! Feel free to open issues or submit pull requests for any improvements or additional features.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
 
 This README provides an overview of the repository, information on dependencies, details about the repository structure, usage instructions, guidelines for training and evaluation, an invitation for contributions, and information about the project's license. Customize the content as needed for your specific repository.
