@@ -213,10 +213,10 @@ def plot_loss(no_of_epochs:int = 1000, plot_every : int = 10, lr_list : list = N
     
     plt.tight_layout()
     print("Saving Image ...")
-    if os.path.exists("./plot_loss.png"):
-        plt.savefig("./plot_loss_2.png",dpi = 300)
+    if os.path.exists("./output/plot_loss.png"):
+        plt.savefig("./output/plot_loss_2.png",dpi = 300)
     else:
-        plt.savefig("./plot_loss.png",dpi = 300)
+        plt.savefig("./output/plot_loss.png",dpi = 300)
     print("Image Saved !")
 
 def diff_temp(temp_list):
@@ -241,7 +241,7 @@ def diff_temp(temp_list):
     test_path = './data/dickens_test.txt'
     input_string = unidecode.unidecode(open(test_path, 'r').read())
     predict_len = 200
-    file_name = "./diff_temp.txt"
+    file_name = "./output/diff_temp.txt"
     with open(file_name, 'w', newline='') as file:
         for temperature in temp_list:
             # random_chunk
