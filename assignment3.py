@@ -165,12 +165,8 @@ def main():
         plot_loss(no_of_epochs = 2000,plot_every = 5,lr_list = lr_list)
 
     if args.diff_temp:
-        print(f"Start Time : {datetime.datetime.now}")
-        # YOUR CODE HERE
-        #         1) Fill in `temp_list` with temperatures that you want to try.
-        ########################### STUDENT SOLUTION ###########################
-        temp_list = [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95]
-        ########################################################################
+        print(f"Start Time : {datetime.datetime.now()}")
+        temp_list = [0.4,0.5,0.6,0.7,0.8,0.9]
         diff_temp(temp_list)
 
 

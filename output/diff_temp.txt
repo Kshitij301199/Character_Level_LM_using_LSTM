@@ -1,116 +1,67 @@
-TEMPERATURE : 0.5
-PREDICTION : I sat
-looking accorning, and well at the spare a breakfast from the deat not being and well of the least the door was a strange with a long for the most on the dispairs which the part the ready in the perconsid
-ORIGINAL TEXT : I sat
-looking thoughtfully at the fire.
-
-Thoughtfully, for I could not be here once more, and so near Agnes,
-without the revival of those regrets with which I had so long been
-occupied.  Softened regre
-
----------------------------------------------------------------TEMPERATURE : 0.55
-PREDICTION : ort being and all ask at the coursed the partness as it were at the strange to make a long that it was he said and there been been for the chan the head, the farth was at the serven of a stronger was a low to p
-ORIGINAL TEXT : ort being what is called Bullied, sir. 
-It would quite unman me.  Do you know it was some time before I
-recovered the conduct of that alarming lady, on the night of your
-birth, Mr. Copperfield?'
-
-I tol
-
----------------------------------------------------------------TEMPERATURE : 0.6
-PREDICTION : e unman me at many began against, and sat except and man how the destrain, was a words crown out as the hands in his hands, and stork as I
-could be stand of Giver was still be a loughces, which it was very ther
-ORIGINAL TEXT : e unman me.  Do you know it was some time before I
-recovered the conduct of that alarming lady, on the night of your
-birth, Mr. Copperfield?'
-
-I told him that I was going down to my aunt, the Dragon of
-
----------------------------------------------------------------TEMPERATURE : 0.65
-PREDICTION :  her better of the pursued; and whose same
-for my door, the
-better.  'He have accord, I know see were some and well the 
-toobled the same of came on the charable a one 
-still another, and may the first 
-and spe
-ORIGINAL TEXT :  her better now - 'Blind, blind, blind!'
-
-We both kept silence for some minutes.  When I raised my eyes, I
-found that she was steadily observant of me.  Perhaps she had
-followed the current of my mind;
-
----------------------------------------------------------------TEMPERATURE : 0.7
-PREDICTION : PTER 60
-AG.
-
-  "What last became and rest to being the long at he got an accares
-standing in a good.  His stared at this appear.  'Same with a poor from the breakfast at some with a days even the spare in looki
-ORIGINAL TEXT : PTER 60
-AGNES
-
-My aunt and I, when we were left alone, talked far into the night. 
-How the emigrants never wrote home, otherwise than cheerfully and
-hopefully; how Mr. Micawber had actually remitted di
-
----------------------------------------------------------------TEMPERATURE : 0.75
-PREDICTION :  the letted again, and do no course forced and not at looks what a counters as the fart deal the 
-large wall
-of her coursent was 
-man on
-his far the extriouss for
-see to seaw's boy-- 
-for my part water still he
-ORIGINAL TEXT :  the letters I had had.  Mr. Dick, as usual,
-was not forgotten.  My aunt informed me how he incessantly occupied
-himself in copying everything he could lay his hands on, and kept
-King Charles the First
-
----------------------------------------------------------------TEMPERATURE : 0.8
-PREDICTION : rain, undering.  I am his hands in his little myself at
-looking was consequences to love of the
-can, and sencent looking eathlinds more began any counter, on, and a looked 
-to gentleman chegwew by my dead the c
-ORIGINAL TEXT : rain, under his potations of negus, to divert his attention from
-this topic to his own affairs, on which, for the next half-hour, he
-was quite loquacious; giving me to understand, among other pieces
-of
-
----------------------------------------------------------------TEMPERATURE : 0.85
-PREDICTION :  mightily
-back.  Mr. Cruspick on the glad my cork own.  The low get in the traitically choich in a 
-parlour hand with,
-on his plactions is, deciscriect standly intelly,' said I am a very, and house, and some on
-ORIGINAL TEXT :  mightily
-amused, when we began to talk composedly, by my account of my
-meeting with Mr. Chillip, and of his holding her in such dread
-remembrance; and both she and Peggotty had a great deal to say
-abo
-
----------------------------------------------------------------TEMPERATURE : 0.9
-PREDICTION : 
-small palloon.  Not him, and gave with on his men
-them?
-
-Satural on his
-poor, she had a 
-spreased bond,' said 
-That is steep!  I I imoned it was most the naturation and what pursued.  And the letting the 
-hand
-ORIGINAL TEXT : 
-small pale smile, 'Is she so, indeed, sir?  Really?' and almost
+TEMPERATURE : 0.4
+PREDICTION :  and almost the pillow of the back and the 
+sirds and the friend.  I said, and she had no could have the convinced that is he had been 
+and the will nothing, and the could a surpering the possible was sort of t
+ORIGINAL TEXT :  and almost
 immediately called for a candle, and went to bed, as if he were not
 quite safe anywhere else.  He did not actually stagger under the
-neg
+negus; but I should think his placid little pulse must h
 
----------------------------------------------------------------TEMPERATURE : 0.95
-PREDICTION : my aunt sature feet oo. The cornet as returance.
+---------------------------------------------------------------TEMPERATURE : 0.5
+PREDICTION : fore I
+recollect of the back, and I should I loved to her the childied his face that Mr. Stryver the 
+dart.  He should have no disconvincince in the gold of the refive to the shoulder the soon, and should 
+the 
+ORIGINAL TEXT : fore I
+recovered the conduct of that alarming lady, on the night of your
+birth, Mr. Copperfield?'
 
-'SHING
-- Wither letterham Withregin, and wonmen sister, there was tably sensetmakes which thro) better.  Fot her, and there first eyes heads to during to anythi
-ORIGINAL TEXT : my aunt say once more;
-and I understood her better now - 'Blind, blind, blind!'
+I told him that I was going down to my aunt, the Dragon of that
+night, early in the morning; and that 
 
-We both kept silence for some minutes.  When I raised my eyes, I
-found that she was steadily observant of me.  Perhaps s
+---------------------------------------------------------------TEMPERATURE : 0.6
+PREDICTION :  you'll expected in the self, never 
+of the who was chair and mind before the way, I am only night 
+the pased them, when I of the old that been so face to have a little handed in the rined that 
+are sort seemed
+ORIGINAL TEXT :  you'll excuse my returning to
+it.  Don't you expose it to a good deal of excitement, sir?'
+
+I found it not difficult, in the excitement of Mr. Chillip's own
+brain, under his potations of negus, to div
+
+---------------------------------------------------------------TEMPERATURE : 0.7
+PREDICTION : ellent of earness, that have comple, my aunt, she was a 
+her night, you have begs, 
+an you thought of much my like in her. I did him to down as of the contreed the spiriting and for the 
+are thim that true is l
+ORIGINAL TEXT : ellent of women, as he would know full well
+if he knew her better.  The mere notion of the possibility of his
+ever seeing her again, appeared to terrify him.  He replied with a
+small pale smile, 'Is sh
+
+---------------------------------------------------------------TEMPERATURE : 0.8
+PREDICTION : n the morning, Durdsconting
+should read his day), Mr. Dasper,' the dread that the hand sporting the entrumbled
+me that the chilling the liked, Mister, stumphed, 'you and loved it
+was between the first, and in a
+ORIGINAL TEXT : n the morning; and that she was one of the most
+tender-hearted and excellent of women, as he would know full well
+if he knew her better.  The mere notion of the possibility of his
+ever seeing her again
+
+---------------------------------------------------------------TEMPERATURE : 0.9
+PREDICTION : bury today, in this dear of the faurt.
+
+  "They ancy unhibles when I disent. "The spreites.  Bust count ease, and had book on, with the face the good
+hand.'
+
+'Discounted the quarted before) handed his new I she
+ORIGINAL TEXT : bury today without stopping, if I had been coming to anyone
+but her.
+
+She was pleased, but answered, 'Tut, Trot; MY old bones would have
+kept till tomorrow!' and softly patted my hand again, as I sat
+l
 
 ---------------------------------------------------------------

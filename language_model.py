@@ -250,7 +250,7 @@ def diff_temp(temp_list):
             chunk = input_string[start_index: end_index]
             predicted_text = generate(model, prime_str=chunk[:10], predict_len=predict_len, temperature=temperature)
             print(f"TEMPERATURE : {temperature}")
-            file.write(f"TEMPERATURE : {temperature}\n")
+            file.write(f"\nTEMPERATURE : {temperature}\n")
             print(f"PREDICTION : {predicted_text}")
             file.write(f"PREDICTION : {predicted_text}\n")
             print(f"ORIGINAL TEXT : {chunk}")
